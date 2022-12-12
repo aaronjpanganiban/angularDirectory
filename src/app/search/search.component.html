@@ -1,0 +1,5 @@
+<div class="container mt-3 ml-1">
+    <span class="bi bi-search"><strong>Search: </strong></span>
+    <!-- <label for="input" class="control-label"><strong>Search:  </strong></label> -->
+    <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()" placeholder="There are {{item}} available contacts." size="30">
+</div>

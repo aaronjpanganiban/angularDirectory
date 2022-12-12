@@ -1,0 +1,70 @@
+<!-- Logo  -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="h3 text-dark fw-bold"><i class="fa fa-plus-circle"></i>Add Contact
+            </p>
+        </div>
+    </div>  
+</div>
+
+<!-- Condition based Loading  -->
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<!-- Contact Form  -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form [formGroup]="contactForm" #contactChange>
+                <label for="name"><strong>Name</strong></label>
+                <div>
+                    <input type="text" id="name" name="name" placeholder="(Required)" aria-label="Enter your name" formControlName="name" >
+                </div>
+                <div *ngIf="!contactForm.controls.name?.valid && (contactForm.controls.name?.dirty
+                ||contactForm.controls.name?.touched)">Valid name is Required</div>
+                <label for="user"><strong>User name</strong></label>
+                <div>
+                    <input type="text" id="username" name="username" placeholder="(Required)" aria-label="Enter your username" formControlName="username" >
+                </div>
+                <div *ngIf="!contactForm.controls.username?.valid && (contactForm.controls.username?.dirty
+                ||contactForm.controls.username?.touched)">Valid user name is Required</div>
+                <label for="email"><strong>Email</strong></label>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="(Required)" aria-label="Enter your email" formControlName="email">
+                </div>
+                <div *ngIf="!contactForm.controls.email?.valid && (contactForm.controls.email?.dirty
+                ||contactForm.controls.email?.touched)">Valid email is Required</div>
+                <label for="phone"><strong>Phone #</strong></label>
+                <div>
+                    <input type="text" id="phone" name="phone" placeholder="11 Digit #(Required)" aria-label="Enter your 11-Digit phone number" formControlName="phone">
+                </div>
+                <div *ngIf="!contactForm.controls.phone?.valid && (contactForm.controls.phone?.dirty
+                ||contactForm.controls.phone?.touched)">Valid phone# is Required</div>
+                <!-- <label for="mobile"><strong>Mobile#</strong></label>
+                <div>
+                    <input type="text" id="mobile" name="mobile" placeholder="11 Digit #(Required)" aria-label="Enter your 11-Digit mobile number" formControlName="mobile">
+                </div>
+                <div *ngIf="!contactForm.controls.mobile?.valid && (contactForm.controls.mobile?.dirty
+                ||contactForm.controls.mobile?.touched)">Valid mobile# is Required</div> -->
+                <label for="company"><strong>Company</strong></label>
+                <div>
+                    <input type="text" id="company" name="company" placeholder="(Optional)" aria-label="Enter your company" formControlName="company">
+                </div>
+                <label for="title"><strong>Address (City)</strong></label>
+                <div>
+                    <input type="text" id="title" name="title" placeholder="(Optional)" aria-label="Enter your city Address" formControlName="address">
+                </div>
+                <label for="photo"><strong>Photo URL</strong></label>
+                <div>
+                    <input type="text" id="photo" name="photo" placeholder="(Optional)" aria-label="Enter your photo" formControlName="photo">
+                </div>
+                <div class="mt-2" >
+                    <button (click)="addContact()" class="btn btn-success" [disabled]="!contactForm.valid">Add</button>&nbsp;
+                    <a class="btn btn-dark ms-2" routerLink="/">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

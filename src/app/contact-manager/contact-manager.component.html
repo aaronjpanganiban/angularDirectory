@@ -1,0 +1,47 @@
+
+<!-- Search Bar Component -->
+<app-search (searchTextChanged)="onSearchTextEntered($event)" [item]="currentItem"></app-search>
+
+<!-- Condition based Loading  -->
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<!-- Condition List  -->
+<div class="container mt-3">
+   
+    <h2>Contact List</h2>
+    <table class="table table-bordered border-secondary border-5 table-light table-hover">
+      <thead class="table table-bordered table-dark">
+          <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Action</th>
+          </tr>
+      </thead>
+      <tbody *ngFor="let contact of contacts ; let i = index">
+        <tr *ngIf="searchText === '' || contact.name.toLowerCase().includes(searchText.toLowerCase()) || contact.email.toLowerCase().includes(searchText.toLowerCase()) || contact.username.toLowerCase().includes(searchText.toLowerCase())|| contact.id.toLowerCase().includes(searchText.toLowerCase())">
+          <td>{{ i + 1 }}</td>
+          <td>{{ contact.id }}</td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.username }}</td>
+          <td><div class="d-flex align-items- justify-content-around">
+            <a routerLink="/contacts/view/{{contact.id}}" class="btn btn-warning my-1" data-toggle="tooltip" data-placement="top" title="View Contact Details">
+                <i class="fa fa-eye"></i>
+            </a>
+            <a routerLink="/contacts/edit/{{contact.id}}" class="btn btn-primary my-1" data-toggle="tooltip" data-placement="top" title="Edit Contact Details">
+                <i class="fa fa-pen"></i>
+            </a>
+            <button class="btn btn-danger my-1" data-toggle="tooltip" data-placement="top" title="Delete Contact" (click)="deleteContact(contact.id)">
+                <i class="fa fa-trash-can"></i>
+            </button>
+        </div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
